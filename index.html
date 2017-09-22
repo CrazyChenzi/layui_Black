@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <title>Black_晨- Layui</title>
+   <link rel="stylesheet" href="./layui/css/layui.css">
+   <style>
+     .layui-tab{
+        margin: 0px;
+     }
+  </style>
+</head>
+<body>
+   <div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">Black_晨</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="">控制台</a></li>
+      <li class="layui-nav-item"><a href="">商品管理</a></li>
+      <li class="layui-nav-item"><a href="">用户</a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">其它系统</a>
+        <dl class="layui-nav-child">
+          <dd><a href="">邮件管理</a></dd>
+          <dd><a href="">消息管理</a></dd>
+          <dd><a href="">授权管理</a></dd>
+        </dl>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          Black_晨
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退了</a></li>
+    </ul>
+  </div>
+
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">所有商品</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;" data-src="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
+               <i class="fa fa-user" aria-hidden="true"></i><span> 表单</span></a></dd>
+            <dd><a href="./form.html">列表二</a></dd>
+            <dd><a href="javascript:;">列表三</a></dd>
+            <dd><a href="">超链接</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">解决方案</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">列表一</a></dd>
+            <dd><a href="javascript:;">列表二</a></dd>
+            <dd><a href="">超链接</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">云市场</a></li>
+        <li class="layui-nav-item"><a href="">发布商品</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div class="layui-tab layui-tab-card" lay-allowclose="true">
+        <ul class="layui-tab-title">
+          <li class="layui-this">网站设置</li>
+          <li>用户基本管理</li>
+          <li>权限分配</li>
+          <li>商品管理</li>
+          <li>订单管理</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 1000px">
+          <div class="layui-tab-item layui-show">
+            <div style="padding: 15px;" class="body_content">内容主体区域</div>
+          </div>
+          <div class="layui-tab-item">
+          </div>
+          <div class="layui-tab-item">
+          </div>
+          <div class="layui-tab-item">
+             <div style="padding: 15px;">内容主体区域</div>
+          </div>
+          <div class="layui-tab-item">
+             <div style="padding: 15px;">内容主体区域</div>
+          </div>
+          <div class="layui-tab-item">
+             <div style="padding: 15px;">内容主体区域</div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    Black_晨 © - 底部固定区域
+  </div>
+</div>
+   <script src="./layui/layui.js"></script>
+   <script src="./js/jquery-1.10.2.min.js"></script>
+   <script>
+      //JavaScript代码区域
+      layui.use('element', function(){
+        var element = layui.element;
+        var active = {
+          tabAdd: function(){
+            //新增一个Tab项
+            element.tabAdd('demo', {
+              title: '新选项'+ (Math.random()*1000|0) //用于演示
+              ,content: '内容'+ (Math.random()*1000|0)
+              ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+            })
+          }
+          ,tabDelete: function(othis){
+            //删除指定Tab项
+            element.tabDelete('demo', '44'); //删除：“商品管理”
+
+
+            othis.addClass('layui-btn-disabled');
+          }
+          ,tabChange: function(){
+            //切换到指定Tab项
+            element.tabChange('demo', '22'); //切换到：用户管理
+          }
+        };
+      });
+
+      $('.layui-nav-child a').click( function () {
+         console.log($(this).attr("data-src"))
+         // setTimeout( function () {
+         // $('.body_content').load($(this).attr('data-src'),function(data){console.log(data)})
+            $('.body_content').load($(this).attr("data-src"));
+         // },200)
+
+      })
+   </script>
+</body>
+</html>
